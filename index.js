@@ -27,13 +27,14 @@ mongoose
   .connect(process.env.MONGO_URI, {
     useUnifiedTopology: true,
   })
-  .then(() => console.log("MongoDB Connected!"))
+  .then(() => console.log("database connection successfull!"))
   .catch((e) => console.log(e));
 
 // Allow the request to be received as json
 app.use(express.json());
 
 // Middleware for routes
+app.get("/", (req, res) => res.send("server is healthy"));
 app.use("/api/health", healthCheck);
 app.use("/api/sales", sales);
 app.use("/rss/news", news);
